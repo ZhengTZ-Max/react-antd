@@ -1,5 +1,5 @@
 import React,{ Suspense } from 'react';
-import {BrowserRouter as Router , Route,Link,HashRouter} from 'react-router-dom';
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
 import { Layout, Menu, Breadcrumb,Dropdown,Spin } from 'antd';
 import { ExportOutlined } from '@ant-design/icons';
 import './home.css'
@@ -17,18 +17,21 @@ export default class Home extends React.Component{
       pathname:'/'
   };
   componentWillMount() {
-    // console.log(fetch)
-    // console.log(window.location.pathname)
     this.setState({
-      pathname:window.location.hash
+      pathname: window.location.pathname
     })
-
-    // window.location.pathname = localStorage.getItem("pathname")
-    // console.log(localStorage.getItem("pathname"))
-    // if(localStorage.getItem("pathname") != "/home"){
-    //   localStorage.setItem("pathname",window.location.pathname)
-    // }
   }
+  // componentDidMount(){
+  //   // UNLISTEN变量用来接收解绑函数
+  //   UNLISTEN = this.props.history.listen(route => {
+  //     this.setState({
+  //       pathname:route.pathname
+  //     })
+  //   });
+  // }
+  // componentWillUnmount(){
+  //   UNLISTEN && UNLISTEN(); // 执行解绑
+  // }
   onChange = (e)=>{
     this.setState({
       content:e.target.value
@@ -39,6 +42,7 @@ export default class Home extends React.Component{
     //   console.log(this.state.content)
     // })
   }
+  // 渲染侧边栏
   fillterSidebar=()=>{
     return Routers.map((item,index)=>{
       if(item.show){
@@ -60,6 +64,7 @@ export default class Home extends React.Component{
       }
     })
   }
+  // 判断当前侧边栏下的子级 是否显示
   isDrop=(children)=>{
     return children.some((ele)=>{
       return ele.show == true
@@ -67,7 +72,7 @@ export default class Home extends React.Component{
   }
   outLogin=()=>{
     localStorage.removeItem("isLogin")
-    window.location.hash = "#/login"
+    window.location.pathname = "/login"
   }
   toggle = () => {
     this.setState({
@@ -77,7 +82,7 @@ export default class Home extends React.Component{
   render(){
         return(
         <Spin spinning={false}>
-          <HashRouter>
+          <Router>
             <Layout id="body" >
               <Header className="header">
                 <div className="logo">
@@ -90,7 +95,7 @@ export default class Home extends React.Component{
                   overlay={<Menu>
                             <Menu.Item icon={<ExportOutlined />} onClick={this.outLogin} style={{color:'#f5222d'}}>退出登录</Menu.Item>
                           </Menu>} placement="bottomCenter">
-                    <span className="ant-dropdown-link">郑铁柱 { React.createElement(Icon['DownOutlined'])}</span>
+                    <span className="ant-dropdown-link">{JSON.parse(localStorage.getItem('basic')).username} { React.createElement(Icon['DownOutlined'])}</span>
                   </Dropdown>
                 </div>
               </Header>
@@ -98,7 +103,8 @@ export default class Home extends React.Component{
                 <Sider width={210} collapsed={this.state.collapsed} onCollapse={this.onCollapse} className="site-layout-background">
                   <Menu
                     mode="inline"
-                    defaultSelectedKeys={[`${this.state.pathname}`]}
+                    defaultSelectedKeys={[this.state.pathname]}
+                    // selectedKeys={[this.state.pathname]}
                     style={{ height: '100%', borderRight: 0 }}
                   >
                     {this.fillterSidebar()}
@@ -129,7 +135,7 @@ export default class Home extends React.Component{
                 </Layout>
               </Layout>
             </Layout>
-          </HashRouter>
+          </Router>
         </Spin>
         )
     }
