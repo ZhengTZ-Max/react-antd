@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React,{ Suspense } from 'react';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
 import { Layout, Menu, Breadcrumb,Dropdown,Spin } from 'antd';
@@ -67,7 +68,7 @@ export default class Home extends React.Component{
   // 判断当前侧边栏下的子级 是否显示
   isDrop=(children)=>{
     return children.some((ele)=>{
-      return ele.show == true
+      return ele.show === true
     })
   }
   outLogin=()=>{

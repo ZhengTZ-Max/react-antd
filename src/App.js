@@ -21,7 +21,7 @@ export default class App extends React.Component{
         window.location.pathname = "/"
       }
     }else{
-      if(window.location.pathname == '/login'){
+      if(window.location.pathname === '/login'){
         return
       }
       if(window.location.pathname && window.location.pathname !== '/login' && window.location.pathname !== '/'){

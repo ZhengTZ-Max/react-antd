@@ -64,7 +64,7 @@ export default class Login extends React.Component{
         return(
             <div id="login">
                 <div className="login-form">
-                    <p className="login-form-title">瞎写的后台</p>
+                    <p className="login-form-title">铁柱管理系统</p>
                     <Form
                       ref='form'
                       className="login-form-box"
@@ -92,7 +92,7 @@ export default class Login extends React.Component{
                       >
                         <Input  placeholder="请输入验证码" addonBefore={<SafetyCertificateOutlined />} suffix={<Button onClick={this.getCode} type="link" size="small">获取验证码</Button>} />
                       </Form.Item>
-                      <Form.Item className="remember"  name="remember" valuePropName="checked"><Checkbox style={{color:'#fff'}}>记住我</Checkbox></Form.Item>
+                      <Form.Item className="remember"  name="remember" valuePropName="checked"><Checkbox style={{color:'rgba(255,255,255,0.8)'}}>记住我</Checkbox></Form.Item>
                       <Form.Item className="loginBtn"><Button type="primary" block loading={this.state.loading} htmlType="submit">登录</Button></Form.Item>
                     </Form>
                 </div>

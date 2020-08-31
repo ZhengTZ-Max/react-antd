@@ -15,25 +15,14 @@ if (process.env.NODE_ENV === 'development') {
   baseUrl = 'http://test.pre.fableedu.com/'
   // 打包上线环境
   // 根据不同的环境切换接口请求路径
+  // eslint-disable-next-line default-case
   switch (window.location.origin) {
     // 开发环境
-    case 'http://apptest.yidodo.com':
-      baseUrl = 'http://test.art.fableedu.com/'
-      break
+    case 'http://apptest.yidodo.com': baseUrl = 'http://test.art.fableedu.com/'; break;
       // 预生产环境 https
-    case 'https://h5pre.yidodo.com':
-      baseUrl = 'https://test.pre.fableedu.com/'
-      break
+    case 'https://h5pre.yidodo.com': baseUrl = 'https://test.pre.fableedu.com/'; break;
       // 生产环境
-    case 'https://www.yidodo.com':
-      baseUrl = 'https://api.yidodo.com/'
-      break
-      // beta环境
-    case 'https://betawww.yidodo.com':
-      baseUrl = 'https://betaapi.yidodo.com/'
-      break
+    case 'https://www.yidodo.com': baseUrl = 'https://api.yidodo.com/'; break;
   }
 }
-export {
-  baseUrl
-}
+export { baseUrl }
