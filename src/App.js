@@ -1,8 +1,8 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import { Modal } from 'antd';
-import Home from './commponent/home'
-import Login from './commponent/login'
+import Home from './commponent/Home/Home'
+import Login from './commponent/Login/Login'
 
 export default class App extends React.Component{
   componentWillMount(){
@@ -52,7 +52,7 @@ export default class App extends React.Component{
         return(
           <Router>
             {
-              window.location.pathname !== '/login' && localStorage.getItem("isLogin") ? <Route path="/" component={Home}></Route> : <Route path="/login" component={Login}></Route>
+              localStorage.getItem("isLogin") ? <Route path="/" component={Home}></Route> : <Route path="/login" component={Login}></Route>
             }
           </Router>
         )

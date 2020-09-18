@@ -2,7 +2,7 @@
 import React from 'react';
 import { Form, Input, Button, Checkbox,message } from 'antd';
 import { UserOutlined,LockOutlined,SafetyCertificateOutlined } from '@ant-design/icons';
-import './login.css'
+import './Login.css'
   
 export default class Login extends React.Component{
     state = {

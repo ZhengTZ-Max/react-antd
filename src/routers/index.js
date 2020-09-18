@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-import lazyComponent from '../untils/importPath.js'
+import {lazyComponent} from '../untils/importPath.js'
 /*
     exact - true时表示严格匹配，为false时为正常匹配。
     name - 当前路由名称
