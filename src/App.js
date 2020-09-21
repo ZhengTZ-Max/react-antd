@@ -6,6 +6,10 @@ import Login from './commponent/Login/Login'
 
 export default class App extends React.Component{
   componentWillMount(){
+    // 向window添加onloaded方法 (页面加载完毕触发事件)
+    window.onloaded() && window.onloaded()
+
+    
     console.log(window.location)
     // 初次进入 如不是login页面 将路径计入缓存 
     if(window.location.pathname !== "/login"){

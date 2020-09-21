@@ -58,13 +58,15 @@ export default class Login extends React.Component{
     };
     getCode=()=>{
       console.log("获取验证码")
-      message.success('验证码可以随便输哦~');
+      message.success('验证码随意哦~');
     }
     render(){
         return(
-            <div id="login">
+          <div id="login">
+            <div className="login-bg"></div>
+            <div className="login-content">
                 <div className="login-form">
-                    <p className="login-form-title">铁柱管理系统</p>
+                    <h2 className="login-form-title">登录</h2>
                     <Form
                       ref='form'
                       className="login-form-box"
@@ -77,26 +79,66 @@ export default class Login extends React.Component{
                         name="username"
                         rules={[{ required: true, message: '请输入您的用户名' }]}
                       >
-                        <Input placeholder="请输入您的用户名" allowClear addonBefore={<UserOutlined />}/>
+                        <InputAnimation placeholder="用户名" animation="1"></InputAnimation>
                       </Form.Item>
 
                       <Form.Item
                         name="password"
                         rules={[{ required: true, message: '请输入您的密码' }]}
                       >
-                        <Input.Password  placeholder="请输入您的密码" addonBefore={<LockOutlined />} />
+                        <InputAnimation placeholder="密码" animation="1"></InputAnimation>
                       </Form.Item>
                       <Form.Item
                         name="code"
                         rules={[{ required: true, message: '请输入验证码' }]}
                       >
-                        <Input  placeholder="请输入验证码" addonBefore={<SafetyCertificateOutlined />} suffix={<Button onClick={this.getCode} type="link" size="small">获取验证码</Button>} />
+                        <Input  placeholder="请输入验证码" suffix={<Button onClick={this.getCode} type="link" size="small">获取验证码</Button>} />
                       </Form.Item>
                       <Form.Item className="remember"  name="remember" valuePropName="checked"><Checkbox style={{color:'rgba(255,255,255,0.8)'}}>记住我</Checkbox></Form.Item>
                       <Form.Item className="loginBtn"><Button type="primary" block loading={this.state.loading} htmlType="submit">登录</Button></Form.Item>
                     </Form>
                 </div>
             </div>
+          </div>
         )
     }
+}
+const InputAni1 = function(){
+  return (
+    <div>
+      <svg className="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 328 34" preserveAspectRatio="none">
+        <path d="m0,0l328,0l0,34"></path>
+		  </svg>
+      <svg className="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 328 34" preserveAspectRatio="none">
+		  	<path d="m328,34l-328,0l0,-34"></path>
+		  </svg>
+    </div>
+  )
+}
+class InputAnimation extends React.Component {
+  constructor(props){
+      super(props);
+      console.log(this.props)
+      this.state={
+        isToggle:false, // 动态改变className值
+        animation:this.props.animation
+      }
+  }
+  toggle=()=>{
+    this.setState({
+      isToggle:!this.state.isToggle
+    })
+  }
+  render() {
+      return (
+        <div className={`input-con ${this.state.isToggle?'input--active':'' }`}>
+            {/* <svg className="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 328 34" preserveAspectRatio="none">
+					  	<path stroke-width="6" stroke-linecap="round" d="m0,0l328,0l0,34l-328,0l0,-34z"></path>
+					  </svg> */}
+            
+            {InputAni1()}
+            <input className="input-item" placeholder="用户名" onFocus={this.toggle} onBlur={this.toggle}></input>
+        </div>
+      );
+  }
 }

@@ -11,11 +11,27 @@
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="stylesheet" href="./loading.css">
     <title>铁柱管理后台</title>
   </head>
   <body>
-    <div>加载中</div>
+    <div id="loading">
+      <div class="la-pacman la-3x">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
     <noscript>本页面需要浏览器启用或者说支持JavaScript</noscript>
     <div id="root"></div>
+    <script>
+      window.onloaded = (()=>{
+        console.log("我TM的加载完毕了")
+        document.getElementById("loading").remove()
+      })
+    </script>
   </body>
 </html>
